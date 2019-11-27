@@ -7,6 +7,7 @@ const uglify       = require('gulp-uglify');
 const concat       = require('gulp-concat');
 const del          = require('del');
 const imagemin     = require('gulp-imagemin');
+const browserSync  = require('browser-sync').create();
 
 sass.compiler = require('node-sass');
 
@@ -46,4 +47,17 @@ gulp.task('img', () =>
       optimizationLevel: 5
     }))
     .pipe(gulp.dest('./build/img'))
+);
+
+gulp.task('watch', () => {
+    browserSync.init({
+      server: {
+        baseDir: './'
+      }
+    });
+    gulp.watch('./src/scss/**/*.scss', gulp.task('css'));
+    gulp.watch('./src/js/**/*.js', gulp.task('js'));
+    gulp.watch('./src/img/*', gulp.task('img'));
+    gulp.watch('./*.html').on('change', browserSync.reload);
+  }
 );
