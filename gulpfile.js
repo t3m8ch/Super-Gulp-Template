@@ -24,10 +24,12 @@ gulp.task('css', () =>
 
 gulp.task('js', () => 
   gulp.src(jsFiles)
+    .pipe(concat('scripts.js'))
     .pipe(babel({
       presets: ['@babel/env']
     }))
     .pipe(uglify({
       toplevel: true
     }))
+    .pipe(gulp.dest('./build/js'))
 );
