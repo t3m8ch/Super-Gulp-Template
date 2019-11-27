@@ -12,7 +12,6 @@ const browserSync  = require('browser-sync').create();
 sass.compiler = require('node-sass');
 
 let jsFiles = [
-  // './node_modules/jquery/dist/jquery.min.js',
   './src/js/main.js'
 ]
 
