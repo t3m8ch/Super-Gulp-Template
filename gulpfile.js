@@ -61,3 +61,9 @@ gulp.task('watch', () => {
     gulp.watch('./*.html').on('change', browserSync.reload);
   }
 );
+
+gulp.task('build', gulp.series('clean', gulp.parallel(gulp.task('css'), 
+                                        gulp.task('js'), 
+                                        gulp.task('img'))));
+                                        
+gulp.task('dev', gulp.series('build', 'watch'));
