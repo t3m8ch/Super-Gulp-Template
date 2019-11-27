@@ -13,6 +13,8 @@ let jsFiles = [
   './src/js/main.js'
 ]
 
+gulp.task('clean', () => del['./build']);
+
 gulp.task('css', () =>
   gulp.src('./src/scss/**/*.scss')
     .pipe(sass().on('error', sass.logError))
