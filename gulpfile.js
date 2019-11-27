@@ -2,8 +2,15 @@ const gulp         = require('gulp');
 const sass         = require('gulp-sass');
 const cleanCSS     = require('gulp-clean-css');
 const autoPrefixer = require('gulp-autoprefixer');
+const babel        = require('gulp-babel');
+const uglify       = require('gulp-uglify');
 
 sass.compiler = require('node-sass');
+
+let jsFiles = [
+  './node_modules/jquery/dist/jquery.min.js',
+  './src/js/main.js'
+]
 
 gulp.task('css', () =>
   gulp.src('./src/scss/**/*.scss')
@@ -13,4 +20,14 @@ gulp.task('css', () =>
     }))
     .pipe(autoPrefixer())
     .pipe(gulp.dest('./build/css'))
+);
+
+gulp.task('js', () => 
+  gulp.src(jsFiles)
+    .pipe(babel({
+      presets: ['@babel/env']
+    }))
+    .pipe(uglify({
+      toplevel: true
+    }))
 );
