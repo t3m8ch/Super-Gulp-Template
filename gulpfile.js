@@ -6,6 +6,7 @@ const babel        = require('gulp-babel');
 const uglify       = require('gulp-uglify');
 const concat       = require('gulp-concat');
 const del          = require('del');
+const imagemin     = require('gulp-imagemin');
 
 sass.compiler = require('node-sass');
 
@@ -36,4 +37,13 @@ gulp.task('js', () =>
       toplevel: true
     }))
     .pipe(gulp.dest('./build/js'))
+);
+
+gulp.task('img', () =>
+  gulp.src('./src/img/*')
+    .pipe(imagemin({
+      progressive: true,
+      optimizationLevel: 5
+    }))
+    .pipe(gulp.dest('./build/img'))
 );
