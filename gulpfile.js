@@ -25,6 +25,7 @@ gulp.task('css', () =>
     }))
     .pipe(autoPrefixer())
     .pipe(gulp.dest('./build/css'))
+    .pipe(browserSync.stream())
 );
 
 gulp.task('js', () => 
@@ -37,6 +38,7 @@ gulp.task('js', () =>
       toplevel: true
     }))
     .pipe(gulp.dest('./build/js'))
+    .pipe(browserSync.stream())
 );
 
 gulp.task('img', () =>
