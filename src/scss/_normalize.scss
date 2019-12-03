@@ -24,6 +24,12 @@ body {
   margin: $body-margin;
 }
 
+// Correct calculation of width and height.
+
+* {
+  box-sizing: $all-box-sizing;
+}
+
 /**
  * Render the `main` element consistently in IE.
  */
